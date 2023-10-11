@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href ="style.css">
+    <style>
+        .container {
+  height: 200px;
+  position: relative;
+  border: transparent;
+}
+#divout{
+    text-align: center;
+    font-size:20;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+#spanout{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size:20;
+}
+
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+    </style>
+    <script src="script.js" async></script>
+    <script>
+    function initialize(){
+        outputDiv = document.getElementById("divout");
+        outputSpan = document.getElementById("spanout");
+        digit = 3;
+        guess = 0;
+        clock = 7;
+    }
+    function createLock(){
+        digit1 = Math.floor((Math.random() * 3) + 1);
+        digit2 = Math.floor((Math.random() * 3) + 1);
+        digit3 = Math.floor((Math.random() * 3) + 1);
+        codePass = digit1 + 10*digit2 + 100*digit3;
+        outputSpan.innerHTML = codePass;
+    }
+    function firstButtonClick() {
+        if (digit == 1){
+            guess = guess + 1;
+        }
+        if (digit == 2){
+            guess = guess + 10;
+        }
+        if (digit == 3){
+            guess = guess + 100;
+        }
+
+
+        digit--;
+        outputDiv.innerHTML = guess ;
+    }
+    function secondButtonClick() {
+        if (digit == 1){
+            guess = guess + 2;
+        }
+        if (digit == 2){
+            guess = guess + 20;
+        }
+        if (digit == 3){
+            guess = guess + 200;
+        }
+        digit--;
+        outputDiv.innerHTML = guess;
+    }
+    function thirdButtonClick(){
+        if (digit == 1){
+            guess = guess + 3;
+        }
+        if (digit == 2){
+            guess = guess + 30;
+        }
+        if (digit == 3){
+            guess = guess + 300;
+        }
+        digit--;
+        outputDiv.innerHTML = guess;
+    }
+    function checkResults(){
+        if (guess == codePass){
+            outputDiv.innerHTML = "You have unlocked the safe!";
+        }
+        else if (clock == 0){
+           outputDiv.innerHTML = "You have no turns left! You lost!";
+         }
+        else {
+            outputDiv.innerHTML = "Incorrect combination! You have " + clock + " attempts left";
+            clock--;
+            guess = 0;
+            digit = 3;
+
+
+        }
+    }
+    function clear(){
+        guess = 0;
+        digit = 3;
+        outputDiv.innerHTML = "Combination cleared";
+    }
+    </script>
+    <title>Codebreaker</title>
+</head>
+<body onload = "initialize(); createLock()">
+    <p style = "font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size:24; text-align:center;">  The safe is locked with a code! The code is 3 digits! Use the buttons to input the code. </p>
+    <div id = "divout">
+       
+    </div>
+    <div id = "spanout">
+       
+    </div>
+    <div class = "container">
+        <div class = "center">
+    <button onclick = "clear();" style ="height:100px;width:100px;font-size: 25;"> CLEAR </button>
+    <button onclick = "firstButtonClick();" style ="height:100px;width:100px;font-size: 25;"> 1 </button>
+    <button onclick = "secondButtonClick();" style ="height:100px;width:100px;font-size: 25;"> 2 </button>
+    <button onclick = "thirdButtonClick();"style ="height:100px;width:100px;font-size: 25;"> 3 </button>
+    <button onclick = "checkResults();"style ="height:100px;width:100px;font-size: 25;"> UNLOCK </button>
+</div></div>
+</body>
+</html>
+
+
+
+
+
+
