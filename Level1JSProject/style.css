@@ -1,0 +1,10 @@
+html{
+    background-color: burlywood;
+}
+button{
+    background-color: beige;
+    box-shadow: 10px bisque;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25;
+    cursor: pointer;
+}
